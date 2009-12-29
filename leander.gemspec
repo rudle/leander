@@ -7,5 +7,9 @@ Gem::Specification.new do |s|
   s.summary = %q{leander is a command-line webpage clipper}
   s.homepage = %q{http://github.com/rudle/leander}
   s.description = %q{leander is a command-line webpage clipper}
-  s.files = [ "README.md", "bin/leander", "lib/index.rb", "lib/webpage.rb"]
+  s.files = [ "README.md",  "lib/index.rb", "lib/webpage.rb"]
+  s.executables = [ "leander"]
+
+  s.add_dependency "ferret"
+  s.add_dependency "nokogiri"
 end
