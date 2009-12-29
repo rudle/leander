@@ -8,6 +8,11 @@ I wrote this to replace my old method of bookmarking - "xclip -o | perl -pi -e '
 
 This provides a nicer way to search for links and get some context when the time comes to retrieve one.
 
+## Install
+
+I've tested this with ruby 1.8.7 on Arch Linux. I offer no guarantees to its performance.
+The simplest way to install is probably 'gem install leander', although that may be flakey.
+
 ## Help
 usage: leander 'query' OR leander
  query bookmarks or store a bookmark from URL on STDIN
