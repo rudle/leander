@@ -25,5 +25,4 @@ I use Xmonad, and I use leander like this:
 Combined with Vimperator's 'yy' command to yank the current URL, it's pretty slick.
 
 #### The Name
-[http://en.wikipedia.org/wiki/Leander_(clipper)]
-[http://en.wikipedia.org/wiki/Leander_(clipper)]: http://en.wikipedia.org/wiki/Leander_(clipper)
+["http://en.wikipedia.org/wiki/Leander_(clipper)"](http://en.wikipedia.org/wiki/Leander_(clipper))
