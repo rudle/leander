@@ -9,7 +9,7 @@ class BmIndex
   attr_accessor :index
 
   def initialize
-    @index = Index::Index.new(:path => "#{ENV['HOME']}/.rubookmarker.idx")
+    @index = Index::Index.new(:path => "#{ENV['HOME']}/.leander.idx")
   end
 
   def store_webpage(wp)
