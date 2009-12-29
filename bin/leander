@@ -50,7 +50,7 @@ class Bookmarker
     options.hide_url = false
 
     opts = OptionParser.new do |opts|
-      opts.banner = "usage: bookmarker 'query' OR bookmarker \n query bookmarks or store a bookmark from URL on STDIN"
+      opts.banner = "usage: leander 'query' OR leander \n query bookmarks or store a bookmark from URL on STDIN"
 
       opts.separator ""
       opts.separator "specific options"
