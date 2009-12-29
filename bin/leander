@@ -1,0 +1,80 @@
+#!/usr/bin/ruby
+
+require 'rubygems'
+
+require 'optparse'
+require 'optparse/time'
+require 'ostruct'
+
+require './lib/webpage.rb'
+require './lib/index.rb'
+
+class Bookmarker
+  attr_accessor :index, :options
+
+  def initialize(options)
+    @index = BmIndex.new
+    @options = options
+  end
+
+  def search(query)
+    @index.search(query, @options.show_html, @options.hide_url)
+  end
+
+  def run
+    if ARGV.empty?
+      url = ARGF.read
+
+      if validate_url(url)
+        wp = Webpage.new(url)
+        @index.store_webpage wp
+      else
+        puts 'This doesn\'t look like a nice URL. Please use URLs that look like http://domain.tld'
+        exit
+      end
+
+    else
+      query = ARGV.join(' ')
+      search(query)
+    end
+  end
+
+  def validate_url(url)
+    (url =~ /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix) != nil
+  end
+
+
+  def self.parse(args)
+    options = OpenStruct.new
+    options.show_html = false
+    options.hide_url = false
+
+    opts = OptionParser.new do |opts|
+      opts.banner = "usage: bookmarker 'query' OR bookmarker \n query bookmarks or store a bookmark from URL on STDIN"
+
+      opts.separator ""
+      opts.separator "specific options"
+
+      opts.on("--show-html",
+              "print out the HTML stored for each URL provided") do |ext|
+                options.show_html = true
+              end
+
+      opts.on("--hide-url", "hide URL : useful with --show-html to pipe output to a browser") do |ext|
+                options.hide_url = true
+              end
+
+      opts.on_tail("-h", "--help", "Show this message") do
+        puts opts
+        exit
+      end
+
+      opts.parse!(args)
+      return options
+    end
+  end
+end
+
+options = Bookmarker.parse(ARGV)
+bm = Bookmarker.new(options)
+bm.run
