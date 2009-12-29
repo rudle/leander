@@ -9,12 +9,12 @@ I wrote this to replace my old method of bookmarking - "xclip -o | perl -pi -e '
 This provides a nicer way to search for links and get some context when the time comes to retrieve one.
 
 ## Help
-usage: leander 'query' OR leander\n
- query bookmarks or store a bookmark from URL on STDIN\n
+usage: leander 'query' OR leander
+ query bookmarks or store a bookmark from URL on STDIN
 
-specific options\n
-        --show-html                  print out the HTML stored for each URL provided\n
-        --hide-url                   hide URL : useful with --show-html to pipe output to a browser\n
+specific options
+        --show-html                  print out the HTML stored for each URL provided
+        --hide-url                   hide URL : useful with --show-html to pipe output to a browser
     -h, --help                       Show this message
 
 #### Reccomended Usage
