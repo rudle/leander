@@ -1,13 +1,11 @@
 #!/usr/bin/ruby
 
-require 'rubygems'
-
 require 'optparse'
 require 'optparse/time'
 require 'ostruct'
 
-require './lib/webpage.rb'
-require './lib/index.rb'
+require 'webpage.rb'
+require 'index.rb'
 
 class Bookmarker
   attr_accessor :index, :options

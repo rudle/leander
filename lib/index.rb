@@ -1,7 +1,6 @@
-require 'rubygems'
 require 'ferret'
 
-require './lib/webpage.rb'
+require 'webpage.rb'
 
 include Ferret
 
