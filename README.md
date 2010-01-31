@@ -18,6 +18,7 @@ usage: leander 'query' OR leander
  query bookmarks or store a bookmark from URL on STDIN
 
 specific options
+        -d, --delete                     deletes all documents matching the given query from the index 
         --show-html                  print out the HTML stored for each URL provided
         --hide-url                   hide URL : useful with --show-html to pipe output to a browser
     -h, --help                       Show this message
