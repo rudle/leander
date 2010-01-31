@@ -10,7 +10,7 @@ This provides a nicer way to search for links and get some context when the time
 
 ## Install
 
-I've tested this with ruby 1.8.7 on Arch Linux. I offer no guarantees to its performance.
+I've tested this with ruby 1.8.7 (and now 1.9.1) on Arch Linux. I offer no guarantees to its performance.
 The simplest way to install is probably 'gem install leander', although that may be flakey.
 
 ## Help
@@ -29,18 +29,5 @@ I use Xmonad, and I use leander like this:
 
 Combined with Vimperator's 'yy' command to yank the current URL, it's pretty slick.
 
-sntahoesnthaoeu
-
 #### The Name
 http://en.wikipedia.org/wiki/Leander_(clipper)
-http://en.wikipedia.org/wiki/Leander_(clipper)
-http://en.wikipedia.org/wiki/Leander_(clipper)
-http://en.wikipedia.org/wiki/Leander_(clipper)
-http://en.wikipedia.org/wiki/Leander_(clipper)
-http://en.wikipedia.org/wiki/Leander_(clipper)
-http://en.wikipedia.org/wiki/Leander_(clipper)
-http://en.wikipedia.org/wiki/Leander_(clipper)
-http://en.wikipedia.org/wiki/Leander_(clipper)
-http://en.wikipedia.org/wiki/Leander_(clipper)
-
-I AM TESTING OUT GIT WIP
