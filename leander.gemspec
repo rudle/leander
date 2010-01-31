@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "ferret"
   s.add_dependency "nokogiri"
+  s.add_dependency "highline"
 end

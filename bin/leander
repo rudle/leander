@@ -4,73 +4,82 @@ require 'optparse'
 require 'optparse/time'
 require 'ostruct'
 
-require 'lib/webpage.rb'
-require 'lib/index.rb'
+require 'webpage.rb'
+require 'index.rb'
 
 class Bookmarker
   attr_accessor :index, :options
 
-  def initialize(options)
-    @index = BmIndex.new
-    @options = options
-  end
+	def initialize(options)
+		@index = BmIndex.new
+		@options = options
+	end
 
-  def search(query)
-    @index.search(query, @options.show_html, @options.hide_url)
-  end
+	def operate(query)
+		if @options.delete 
+			@index.leander_remove(query) 
+		else
+			@index.search(query, @options.show_html, @options.hide_url)
+		end
+	end
 
-  def run
-    if ARGV.empty?
-      url = ARGF.read
+	def run
+		if ARGV.empty?
+			url = ARGF.read
 
-      if validate_url(url)
-        wp = Webpage.new(url)
-        @index.store_webpage wp
-      else
-        puts 'This doesn\'t look like a nice URL. Please use URLs that look like http://domain.tld'
-        exit
-      end
+			if validate_url(url)
+				wp = Webpage.new(url)
+				@index.store_webpage wp
+			else
+				puts 'This doesn\'t look like a nice URL. Please use URLs that look like http://domain.tld'
+				exit
+			end
 
-    else
-      query = ARGV.join(' ')
-      search(query)
-    end
-  end
+		else
+			query = ARGV.join(' ')
+			operate(query)
+		end
+	end
 
-  def validate_url(url)
-    (url =~ /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix) != nil
-  end
+	def validate_url(url)
+		(url =~ /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix) != nil
+	end
 
 
-  def self.parse(args)
-    options = OpenStruct.new
-    options.show_html = false
-    options.hide_url = false
+	def self.parse(args)
+		options = OpenStruct.new
+		options.show_html = false
+		options.hide_url = false
+		options.delete = false
 
-    opts = OptionParser.new do |opts|
-      opts.banner = "usage: leander 'query' OR leander \n query bookmarks or store a bookmark from URL on STDIN"
+		opts = OptionParser.new do |opts|
+			opts.banner = "usage: leander 'query' OR leander \n query bookmarks or store a bookmark from URL on STDIN"
 
-      opts.separator ""
-      opts.separator "specific options"
+			opts.separator ""
+			opts.separator "specific options"
 
-      opts.on("--show-html",
-              "print out the HTML stored for each URL provided") do |ext|
-                options.show_html = true
-              end
+			opts.on("-d", "--delete", "deletes all documents matching the given query from the index") do |ext|
+				options.delete = true
+			end
 
-      opts.on("--hide-url", "hide URL : useful with --show-html to pipe output to a browser") do |ext|
-                options.hide_url = true
-              end
+			opts.on("--show-html",
+							"print out the HTML stored for each URL provided") do |ext|
+								options.show_html = true
+							end
 
-      opts.on_tail("-h", "--help", "Show this message") do
-        puts opts
-        exit
-      end
+			opts.on("--hide-url", "hide URL : useful with --show-html to pipe output to a browser") do |ext|
+								options.hide_url = true
+							end
 
-      opts.parse!(args)
-      return options
-    end
-  end
+			opts.on_tail("-h", "--help", "Show this message") do
+				puts opts
+				exit
+			end
+
+			opts.parse!(args)
+			return options
+		end
+	end
 end
 
 options = Bookmarker.parse(ARGV)
