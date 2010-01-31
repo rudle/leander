@@ -4,8 +4,8 @@ require 'optparse'
 require 'optparse/time'
 require 'ostruct'
 
-require 'webpage.rb'
-require 'index.rb'
+require 'lib/webpage.rb'
+require 'lib/index.rb'
 
 class Bookmarker
   attr_accessor :index, :options
