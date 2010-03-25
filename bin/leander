@@ -19,7 +19,7 @@ class Bookmarker
 		if @options.delete 
 			@index.leander_remove(query) 
 		else
-			@index.search(query, @options.show_html, @options.hide_url)
+			puts @index.search(query, @options.show_html, @options.hide_url)
 		end
 	end
 
