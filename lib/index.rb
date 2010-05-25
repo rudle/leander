@@ -26,15 +26,15 @@ class BmIndex
 		end
 	end
 
-	def search(query, show_html = false, hide_url = false)
-		output = ''
-
+	def search(query)
+		output = []
 		@index.search_each(query) do |id, score|
 			doc = Nokogiri::HTML.parse(@index[id][:doc])
-			output.concat(index[id][:url] + "\t" + doc.css('title').inner_text.strip) unless hide_url
-			if show_html then ouptut.concat doc end
-
-			output += "\n"
+			tmp = {}
+			tmp[:url] = index[id][:url]
+			tmp[:title] = doc.css('title').inner_text.strip
+			tmp[:doc] = doc
+			output << tmp
 		end
 
 		return output

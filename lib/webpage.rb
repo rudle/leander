@@ -9,9 +9,6 @@ class Webpage
   end
 
 	def get_title
-		puts @doc.class
-		exit
 		return @doc.css('title').content
 	end
-
 end
