@@ -18,6 +18,20 @@ get '/write/*' do
 end
 
 
+
+get '/search/*.json' do
+	content_type :json
+	index = BmIndex.new
+	@search_results = index.search params[:splat].first
+	@search_results.map! { |r| {:url => r[:url], :title => r[:title]} }.flatten
+
+	output = {}
+	@search_results.each_with_index do |r, n| 
+		output[n] = {:result => r}
+	end
+	output.to_s
+end
+
 get '/search/:query' do
 	index = BmIndex.new
 	@search_results = index.search params[:query]
