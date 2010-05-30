@@ -1,7 +1,7 @@
 require 'ferret'
 require 'highline/import'
 
-require 'webpage.rb'
+require 'leander/webpage.rb'
 
 include Ferret
 

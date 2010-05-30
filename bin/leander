@@ -4,8 +4,9 @@ require 'optparse'
 require 'optparse/time'
 require 'ostruct'
 
-require 'webpage.rb'
-require 'index.rb'
+require 'leander/webpage.rb'
+require 'leander/index.rb'
+
 
 class Bookmarker
   attr_accessor :index, :options
@@ -15,12 +16,15 @@ class Bookmarker
 		@options = options
 	end
 
-	def operate(query)
+	def operate query
 		if @options.delete 
-			@index.leander_remove(query) 
+			@index.leander_remove query
 		else
-			puts @options
-			@index.search(query, @options.show_html, @options.hide_url)
+			results = @index.search query 
+			results.each do |r|
+				puts "#{r[:url].chomp} \t: #{r[:title]}" unless @options.hide_url
+				puts "#{r[:doc]}" if @options.show_html
+			end
 		end
 	end
 
