@@ -1,9 +1,7 @@
 #!/usr/bin/ruby
 
-require 'rubygems'
 require 'sinatra/base'
 require 'haml'
-require 'ruby-debug'
 require 'json'
 
 require 'leander/index.rb'
